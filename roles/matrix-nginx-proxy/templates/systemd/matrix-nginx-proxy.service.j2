@@ -21,10 +21,10 @@ ExecStart=/usr/bin/docker run --rm --name matrix-nginx-proxy \
 			--read-only \
 			--tmpfs=/tmp:rw,noexec,nosuid,size={{ matrix_nginx_proxy_tmp_directory_size_mb }}m \
 			--network={{ matrix_docker_network }} \
-			-p 80:8080 \
-			-p 443:8443 \
+			-p 10080:8080 \
+			-p 10443:8443 \
 			{% if matrix_nginx_proxy_proxy_matrix_federation_api_enabled %}
-			-p 8448:8448 \
+			-p 10448:8448 \
 			{% endif %}
 			-v {{ matrix_nginx_proxy_base_path }}/nginx.conf:/etc/nginx/nginx.conf:ro \
 			-v {{ matrix_nginx_proxy_data_path }}:/nginx-data:ro \
