@@ -6,10 +6,10 @@ INVENTORY=inventory/hosts
 SECRETS=inventory/host_vars/matrix.typokign.com/vars.yaml
 
 setup:
-	ANSIBLE_NOCOWS=1 ansible-playbook $(PLAYBOOK) -i $(INVENTORY) -K --tags=setup-all
+	ANSIBLE_NOCOWS=1 ansible-playbook $(PLAYBOOK) -i $(INVENTORY) -K --tags=setup-all --vault-password-file=vault_password
 
 start:
-	ANSIBLE_NOCOWS=1 ansible-playbook $(PLAYBOOK) -i $(INVENTORY) -K --tags=start
+	ANSIBLE_NOCOWS=1 ansible-playbook $(PLAYBOOK) -i $(INVENTORY) -K --tags=start --vault-password-file=vault_password
 
 decrypt:
 	ansible-vault decrypt $(SECRETS) --vault-password-file=vault_password
