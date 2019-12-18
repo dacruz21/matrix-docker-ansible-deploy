@@ -319,6 +319,9 @@ matrix_dimension_enabled: false
 # the Dimension HTTP port to the local host.
 matrix_dimension_container_http_host_bind_port: "{{ '' if matrix_nginx_proxy_enabled else '127.0.0.1:8184' }}"
 
+matrix_integration_manager_rest_url: "{{ matrix_dimension_integrations_rest_url if matrix_dimension_enabled else None }}"
+matrix_integration_manager_ui_url: "{{ matrix_dimension_integrations_ui_url if matrix_dimension_enabled else None }}"
+
 ######################################################################
 #
 # /matrix-dimension
@@ -574,6 +577,9 @@ matrix_synapse_container_federation_api_tls_host_bind_port: "{{ '8448' if (matri
 #
 # For exposing the Synapse Metrics API's port (plain HTTP) to the local host.
 matrix_synapse_container_metrics_api_host_bind_port: "{{ '127.0.0.1:9100' if (matrix_synapse_metrics_enabled and not matrix_nginx_proxy_enabled) else '' }}"
+#
+# For exposing the Synapse Manhole port (plain HTTP) to the local host.
+matrix_synapse_container_manhole_api_host_bind_port: "{{ '127.0.0.1:9000' if matrix_synapse_manhole_enabled else '' }}"
 
 matrix_synapse_database_host: "{{ matrix_postgres_connection_hostname }}"
 matrix_synapse_database_user: "{{ matrix_postgres_connection_username }}"
