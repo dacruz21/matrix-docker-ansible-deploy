@@ -27,7 +27,10 @@ matrix_mautrix_facebook_systemd_wanted_services_list: []
 matrix_mautrix_facebook_appservice_token: ''
 matrix_mautrix_facebook_homeserver_token: ''
 
-# Default mxisd configuration template which covers the generic use case.
+# Can be set to enable automatic double-puppeting via Shared Secret Auth (https://github.com/devture/matrix-synapse-shared-secret-auth).
+matrix_mautrix_facebook_login_shared_secret: ''
+
+# Default configuration template which covers the generic use case.
 # You can customize it by controlling the various variables inside it.
 #
 # For a more advanced customization, you can extend the default (see `matrix_mautrix_facebook_configuration_extension_yaml`)
@@ -63,6 +66,16 @@ matrix_mautrix_facebook_configuration_yaml: |
       #   SQLite:   sqlite:///filename.db
       #   Postgres: postgres://username:password@hostname/dbname
       database: sqlite:////data/mautrix-facebook.db
+
+      # Public part of web server for out-of-Matrix interaction with the bridge.
+      public:
+          # Whether or not the public-facing endpoints should be enabled.
+          enabled: false
+          # The prefix to use in the public-facing endpoints.
+          prefix: /public
+          # The base URL where the public-facing endpoints are available. The prefix is not added
+          # implicitly.
+          external: https://example.com/public
 
       # The unique ID of this appservice.
       id: facebook
@@ -114,9 +127,17 @@ matrix_mautrix_facebook_configuration_yaml: |
       # Whether or not to use /sync to get presence, read receipts and typing notifications when using
       # your own Matrix account as the Matrix puppet for your Facebook account.
       sync_with_custom_puppets: true
+      # Shared secret for https://github.com/devture/matrix-synapse-shared-secret-auth
+      #
+      # If set, custom puppets will be enabled automatically for local users
+      # instead of users having to find an access token and run `login-matrix`
+      # manually.
+      login_shared_secret: {{ matrix_mautrix_facebook_login_shared_secret|to_json }}
       # Whether or not to bridge presence in both directions. Facebook allows users not to broadcast
       # presence, but then it won't send other users' presence to the client.
       presence: true
+      # Whether or not to update avatars when syncing all contacts at startup.
+      update_avatar_initial_sync: true
 
       # Permissions for using the bridge.
       # Permitted values:
@@ -150,6 +171,8 @@ matrix_mautrix_facebook_configuration_yaml: |
               level: DEBUG
           fbchat:
               level: DEBUG
+          hbmqtt:
+              level: INFO
           aiohttp:
               level: INFO
       root:

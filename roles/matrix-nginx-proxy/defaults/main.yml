@@ -3,7 +3,7 @@ matrix_nginx_proxy_enabled: true
 # We use an official nginx image, which we fix-up to run unprivileged.
 # An alternative would be an `nginxinc/nginx-unprivileged` image, but
 # that is frequently out of date.
-matrix_nginx_proxy_docker_image: "nginx:1.17.6-alpine"
+matrix_nginx_proxy_docker_image: "nginx:1.17.7-alpine"
 matrix_nginx_proxy_docker_image_force_pull: "{{ matrix_nginx_proxy_docker_image.endswith(':latest') }}"
 
 matrix_nginx_proxy_base_path: "{{ matrix_base_data_path }}/nginx-proxy"
@@ -197,6 +197,13 @@ matrix_ssl_lets_encrypt_certbot_docker_image: "certbot/certbot:v1.0.0"
 matrix_ssl_lets_encrypt_certbot_docker_image_force_pull: "{{ matrix_ssl_lets_encrypt_certbot_docker_image.endswith(':latest') }}"
 matrix_ssl_lets_encrypt_certbot_standalone_http_port: 2402
 matrix_ssl_lets_encrypt_support_email: ~
+
+# Tells which interface and port the Let's Encrypt (certbot) container should try to bind to
+# when it tries to obtain initial certificates in standalone mode.
+#
+# This should normally be a public interface and port.
+# If you'd like to not bind on all IP addresses, specify one explicitly (e.g. `a.b.c.d:80`)
+matrix_ssl_lets_encrypt_container_standalone_http_host_bind_port: '80'
 
 matrix_ssl_base_path: "{{ matrix_base_data_path }}/ssl"
 matrix_ssl_config_dir_path: "{{ matrix_ssl_base_path }}/config"
