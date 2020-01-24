@@ -50,6 +50,8 @@ Using this playbook, you can get the following services configured on your serve
 
 - (optional) the [matrix-appservice-slack](https://github.com/matrix-org/matrix-appservice-slack) bridge for bridging your Matrix server to [Slack](https://slack.com/)
 
+- (optional) the [matrix-appservice-webhooks](https://github.com/turt2live/matrix-appservice-webhooks) bridge for slack compatible webhooks ([ConcourseCI](https://concourse-ci.org/), [Slack](https://slack.com/) etc. pp.)
+
 - (optional) [Email2Matrix](https://github.com/devture/email2matrix) for relaying email messages to Matrix rooms
 
 - (optional) [Dimension](https://github.com/turt2live/matrix-dimension), an open source integrations manager for matrix clients
@@ -137,6 +139,8 @@ This playbook sets up your server using the following Docker images:
 - [halfshot/matrix-appservice-discord](https://hub.docker.com/r/halfshot/matrix-appservice-discord) - the [matrix-appservice-discord](https://github.com/Half-Shot/matrix-appservice-discord) bridge to [Discord](https://discordapp.com/) (optional)
 
 - [cadair/matrix-appservice-slack](https://hub.docker.com/r/cadair/matrix-appservice-slack) - the [matrix-appservice-slack](https://github.com/matrix-org/matrix-appservice-slack) bridge to [Slack](https://slack.com/) (optional)
+
+- [turt2live/matrix-appservice-webhooks](https://hub.docker.com/r/turt2live/matrix-appservice-webhooks) - the [Appservice Webhooks](https://github.com/turt2live/matrix-appservice-webhooks) bridge (optional)
 
 - [turt2live/matrix-dimension](https://hub.docker.com/r/turt2live/matrix-dimension) - the [Dimension](https://dimension.t2bot.io/) integrations manager (optional)
 
