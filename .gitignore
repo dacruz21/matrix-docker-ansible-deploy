@@ -1,2 +1,6 @@
 vault_password
 .idea/
+/inventory/*
+!/inventory/.gitkeep
+!/inventory/host_vars/.gitkeep
+/roles/*/files/scratchpad

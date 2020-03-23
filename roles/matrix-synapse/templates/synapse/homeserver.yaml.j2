@@ -1,5 +1,11 @@
 #jinja2: lstrip_blocks: "True"
-# vim:ft=yaml
+# Configuration file for Synapse.
+#
+# This is a YAML file: see [1] for a quick introduction. Note in particular
+# that *indentation is important*: all the elements of a list or dictionary
+# should have the same indentation.
+#
+# [1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 
 ## Server ##
 
@@ -470,6 +476,11 @@ tls_private_key_path: {{ matrix_synapse_tls_private_key_path|to_json }}
 
 # ACME support: This will configure Synapse to request a valid TLS certificate
 # for your configured `server_name` via Let's Encrypt.
+#
+# Note that ACME v1 is now deprecated, and Synapse currently doesn't support
+# ACME v2. This means that this feature currently won't work with installs set
+# up after November 2019. For more info, and alternative solutions, see
+# https://github.com/matrix-org/synapse/blob/master/docs/ACME.md#deprecation-of-acme-v1
 #
 # Note that provisioning a certificate in this way requires port 80 to be
 # routed to Synapse so that it can complete the http-01 ACME challenge.
@@ -1347,6 +1358,25 @@ saml2_config:
   #
   #grandfathered_mxid_source_attribute: upn
 
+  # Directory in which Synapse will try to find the template files below.
+  # If not set, default templates from within the Synapse package will be used.
+  #
+  # DO NOT UNCOMMENT THIS SETTING unless you want to customise the templates.
+  # If you *do* uncomment it, you will need to make sure that all the templates
+  # below are in the directory.
+  #
+  # Synapse will look for the following templates in this directory:
+  #
+  # * HTML page to display to users if something goes wrong during the
+  #   authentication process: 'saml_error.html'.
+  #
+  #   This template doesn't currently need any variable to render.
+  #
+  # You can see the default templates at:
+  # https://github.com/matrix-org/synapse/tree/master/synapse/res/templates
+  #
+  #template_dir: "res/templates"
+
 
 
 # Enable CAS for registration and login.
@@ -1497,10 +1527,6 @@ email:
   # https://github.com/matrix-org/synapse/tree/master/synapse/res/templates
   #
   #template_dir: "res/templates"
-  notif_template_html: notif_mail.html
-  notif_template_text: notif_mail.txt
-  expiry_template_html: notice_expiry.html
-  expiry_template_text: notice_expiry.txt
 {% endif %}
 
 
@@ -1582,7 +1608,7 @@ spam_checker: {{ matrix_synapse_spam_checker|to_json }}
 
 # Uncomment to allow non-server-admin users to create groups on this server
 #
-#enable_group_creation: true
+enable_group_creation: {{ matrix_synapse_enable_group_creation|to_json }}
 
 # If enabled, non server admins can only create groups with local parts
 # starting with this prefix
@@ -1817,3 +1843,6 @@ opentracing:
     #
     #  logging:
     #    false
+
+
+# vim:ft=yaml
