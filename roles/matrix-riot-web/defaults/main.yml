@@ -2,7 +2,7 @@ matrix_riot_web_enabled: true
 
 matrix_riot_web_container_image_self_build: false
 
-matrix_riot_web_docker_image: "vectorim/riot-web:v1.5.13"
+matrix_riot_web_docker_image: "vectorim/riot-web:v1.5.15"
 matrix_riot_web_docker_image_force_pull: "{{ matrix_riot_web_docker_image.endswith(':latest') }}"
 
 matrix_riot_web_data_path: "{{ matrix_base_data_path }}/riot-web"
@@ -57,6 +57,8 @@ matrix_riot_web_branding_welcomeBackgroundUrl: ~
 # By default, there's no Riot homepage (when logged in). If you wish to have one,
 # point this to a `home.html` template file on your local filesystem.
 matrix_riot_web_embedded_pages_home_path: ~
+
+matrix_riot_web_jitsi_preferredDomain: ''
 
 # Controls whether the self-check feature should validate SSL certificates.
 matrix_riot_web_self_check_validate_certificates: true

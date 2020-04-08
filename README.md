@@ -20,13 +20,13 @@ Using this playbook, you can get the following services configured on your serve
 
 - (optional, default) a [Riot](https://riot.im/) web UI, which is configured to connect to your own Synapse server by default
 
-- (optional, default) an [mxisd](https://github.com/kamax-io/mxisd) Matrix Identity server
+- (optional, default) an [ma1sd](https://github.com/ma1uta/ma1sd) Matrix Identity server
 
 - (optional, default) an [Exim](https://www.exim.org/) mail server, through which all Matrix services send outgoing email (can be configured to relay through another SMTP server)
 
 - (optional, default) an [nginx](http://nginx.org/) web server, listening on ports 80 and 443 - standing in front of all the other services. Using your own webserver [is possible](docs/configuring-playbook-own-webserver.md)
 
-- (optional, advanced) the [matrix-synapse-rest-auth](https://github.com/kamax-io/matrix-synapse-rest-auth) REST authentication password provider module
+- (optional, advanced) the [matrix-synapse-rest-auth](https://github.com/ma1uta/matrix-synapse-rest-password-provider) REST authentication password provider module
 
 - (optional, advanced) the [matrix-synapse-shared-secret-auth](https://github.com/devture/matrix-synapse-shared-secret-auth) password provider module
 
@@ -56,6 +56,8 @@ Using this playbook, you can get the following services configured on your serve
 
 - (optional) [Dimension](https://github.com/turt2live/matrix-dimension), an open source integrations manager for matrix clients
 
+- (optional) [Jitsi](https://jitsi.org/), an open source video-conferencing platform
+
 Basically, this playbook aims to get you up-and-running with all the basic necessities around Matrix, without you having to do anything else.
 
 **Note**: the list above is exhaustive. It includes optional or even some advanced components that you will most likely not need.
@@ -73,7 +75,7 @@ This is similar to the [EMnify/matrix-synapse-auto-deploy](https://github.com/EM
 
 - this one **can be re-ran many times** without causing trouble
 
-- works on both **CentOS** (7.0+) and Debian-based distributions (**Debian** 9/Stretch+, **Ubuntu** 16.04+)
+- works on various distros: **CentOS** (7.0+), Debian-based distributions (**Debian** 9/Stretch+, **Ubuntu** 16.04+), **Archlinux**
 
 - this one installs everything in a single directory (`/matrix` by default) and **doesn't "contaminate" your server** with files all over the place
 
@@ -110,7 +112,7 @@ This playbook sets up your server using the following Docker images:
 
 - [vectorim/riot-web](https://hub.docker.com/r/vectorim/riot-web/) - the [Riot.im](https://about.riot.im/) web client (optional)
 
-- [kamax/mxisd](https://hub.docker.com/r/kamax/mxisd/) - the [mxisd](https://github.com/kamax-io/mxisd) Matrix Identity server (optional)
+- [ma1uta/ma1sd](https://hub.docker.com/r/ma1uta/ma1sd/) - the [ma1sd](https://github.com/ma1uta/ma1sd) Matrix Identity server (optional)
 
 - [postgres](https://hub.docker.com/_/postgres/) - the [Postgres](https://www.postgresql.org/) database server (optional)
 
@@ -143,6 +145,14 @@ This playbook sets up your server using the following Docker images:
 - [turt2live/matrix-appservice-webhooks](https://hub.docker.com/r/turt2live/matrix-appservice-webhooks) - the [Appservice Webhooks](https://github.com/turt2live/matrix-appservice-webhooks) bridge (optional)
 
 - [turt2live/matrix-dimension](https://hub.docker.com/r/turt2live/matrix-dimension) - the [Dimension](https://dimension.t2bot.io/) integrations manager (optional)
+
+- [jitsi/web](https://hub.docker.com/r/jitsi/web) - the [Jitsi](https://jitsi.org/) web UI (optional)
+
+- [jitsi/jicofo](https://hub.docker.com/r/jitsi/jicofo) - the [Jitsi](https://jitsi.org/) Focus component (optional)
+
+- [jitsi/prosody](https://hub.docker.com/r/jitsi/prosody) - the [Jitsi](https://jitsi.org/) Prosody XMPP server component (optional)
+
+- [jitsi/jvb](https://hub.docker.com/r/jitsi/jvb) - the [Jitsi](https://jitsi.org/) Video Bridge component (optional)
 
 
 ## Deficiencies

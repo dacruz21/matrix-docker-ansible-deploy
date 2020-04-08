@@ -20,9 +20,8 @@
 - name: Ensure yum packages are installed
   yum:
     name:
-      - bash-completion
       - docker-python
-      - ntp
+      - "{{ matrix_ntpd_package }}"
       - fuse
     state: latest
     update_cache: yes

@@ -36,17 +36,19 @@
     dest: "{{ matrix_mautrix_facebook_docker_src_files_path }}"
 #    version: "{{ matrix_coturn_docker_image.split(':')[1] }}"
     force: "yes"
+  register: matrix_mautrix_facebook_git_pull_results
   when: "matrix_mautrix_facebook_enabled|bool and matrix_mautrix_facebook_container_image_self_build"
 
 - name: Ensure Mautrix Facebook Docker image is built
   docker_image:
     name: "{{ matrix_mautrix_facebook_docker_image }}"
     source: build
+    force_source: yes
     build:
       dockerfile: Dockerfile
       path: "{{ matrix_mautrix_facebook_docker_src_files_path }}"
       pull: yes
-  when: "matrix_mautrix_facebook_enabled|bool and matrix_mautrix_facebook_container_image_self_build"
+  when: "matrix_mautrix_facebook_enabled|bool and matrix_mautrix_facebook_container_image_self_build and matrix_mautrix_facebook_git_pull_results.changed"
 
 - name: Check if an old database file already exists
   stat:
@@ -84,7 +86,7 @@
 - name: Ensure matrix-mautrix-facebook.service installed
   template:
     src: "{{ role_path }}/templates/systemd/matrix-mautrix-facebook.service.j2"
-    dest: "/etc/systemd/system/matrix-mautrix-facebook.service"
+    dest: "{{ matrix_systemd_path }}/matrix-mautrix-facebook.service"
     mode: 0644
   register: matrix_mautrix_facebook_systemd_service_result
 
