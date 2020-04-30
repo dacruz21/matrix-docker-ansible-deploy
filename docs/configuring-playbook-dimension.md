@@ -4,7 +4,7 @@
 If you're just installing Matrix services for the first time, please continue with the [Configuration](configuring-playbook.md) / [Installation](installing.md) flow and come back here later.
 
 ## Prerequisites
-For an Integration Manager like [Dimension](https://dimension.t2bot.io) to work, your server needs to have federation enabled (`matrix_synapse_federation_enabled: true`). This is the default for this playbook, so unless you've explicitly disabled federation, you're okay.
+This playbook now supports running [Dimension](https://dimension.t2bot.io) in both a federated and an [unfederated](https://github.com/turt2live/matrix-dimension/blob/master/docs/unfederated.md) environment. This is handled automatically based on the value of `matrix_synapse_federation_enabled`.
 
 Other important prerequisite is the `dimension.<your-domain>` DNS record being set up correctly. See [Configuring your DNS server](configuring-dns.md) on how to set up DNS record correctly.
 
@@ -50,6 +50,12 @@ After these variables have been set, please run the following command to re-run 
 ```
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
+
+## Jitsi domain
+
+By default Dimension will use [jitsi.riot.im](https://jitsi.riot.im/) as the `conferenceDomain` of [Jitsi](https://jitsi.org/) audio/video conference widgets. For users running [a self-hosted Jitsi instance](./configuring-playbook-jitsi.md), you will likely want the widget to use your own Jitsi instance. Currently there is no way to configure this via the playbook, see [this issue](https://github.com/turt2live/matrix-dimension/issues/345) for details.
+
+In the interim until the above limitation is resolved, an admin user needs to configure the domain via the admin ui once dimension is running. In riot-web, go to *Manage Integrations* &rightarrow; *Settings* &rightarrow; *Widgets* &rightarrow; *Jitsi Conference Settings* and set *Jitsi Domain* and *Jitsi Script URL* appropriately.
 
 ## Additional features
 

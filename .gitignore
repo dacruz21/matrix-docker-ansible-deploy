@@ -3,4 +3,5 @@ vault_password
 /inventory/*
 !/inventory/.gitkeep
 !/inventory/host_vars/.gitkeep
+!/inventory/scripts
 /roles/*/files/scratchpad
