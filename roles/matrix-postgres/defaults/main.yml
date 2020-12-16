@@ -8,11 +8,11 @@ matrix_postgres_db_name: ""
 matrix_postgres_base_path: "{{ matrix_base_data_path }}/postgres"
 matrix_postgres_data_path: "{{ matrix_postgres_base_path }}/data"
 
-matrix_postgres_docker_image_v9: "postgres:9.6.19-alpine"
-matrix_postgres_docker_image_v10: "postgres:10.14-alpine"
-matrix_postgres_docker_image_v11: "postgres:11.9-alpine"
-matrix_postgres_docker_image_v12: "postgres:12.4-alpine"
-matrix_postgres_docker_image_v13: "postgres:13.0-alpine"
+matrix_postgres_docker_image_v9: "docker.io/postgres:9.6.20-alpine"
+matrix_postgres_docker_image_v10: "docker.io/postgres:10.15-alpine"
+matrix_postgres_docker_image_v11: "docker.io/postgres:11.10-alpine"
+matrix_postgres_docker_image_v12: "docker.io/postgres:12.5-alpine"
+matrix_postgres_docker_image_v13: "docker.io/postgres:13.1-alpine"
 matrix_postgres_docker_image_latest: "{{ matrix_postgres_docker_image_v13 }}"
 
 # This variable is assigned at runtime. Overriding its value has no effect.
@@ -30,5 +30,3 @@ matrix_postgres_container_extra_arguments: []
 #
 # Takes an "<ip>:<port>" or "<port>" value (e.g. "127.0.0.1:5432"), or empty string to not expose.
 matrix_postgres_container_postgres_bind_port: ""
-
-matrix_postgres_tool_synapse_janitor: "https://raw.githubusercontent.com/xwiki-labs/synapse_scripts/a9188ff175ae581610f92d58ea6eac9a114d854b/synapse_janitor.sql"
