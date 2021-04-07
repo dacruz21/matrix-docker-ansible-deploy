@@ -1,3 +1,42 @@
+# 2021-04-05
+
+## Automated local Postgres backup support
+
+Thanks to [foxcris](https://github.com/foxcris), the playbook can now make automated local Postgres backups on a fixed schedule using [docker-postgres-backup-local](https://github.com/prodrigestivill/docker-postgres-backup-local).
+
+Additional details are available in [Setting up postgres backup](docs/configuring-playbook-postgres-backup.md).
+
+
+
+# 2021-04-03
+
+## Mjolnir moderation tool (bot) support
+
+Thanks to [Aaron Raimist](https://github.com/aaronraimist), the playbook can now install and configure the [Mjolnir](https://github.com/matrix-org/mjolnir) moderation tool (bot).
+
+Additional details are available in [Setting up Mjolnir](docs/configuring-playbook-bot-mjolnir.md).
+
+
+# 2021-03-20
+
+## Sygnal push gateway support
+
+The playbook can now install the [Sygnal](https://github.com/matrix-org/sygnal) push gateway for you.
+
+This is only useful to people who develop/build their own Matrix client applications.
+
+Additional details are available in our [Setting up Sygnal](docs/configuring-playbook-sygnal.md) docs.
+
+
+# 2021-03-16
+
+## Go-NEB support
+
+Thanks to [Zir0h](https://github.com/Zir0h), the playbook can now install and configure the [Go-NEB](https://github.com/matrix-org/go-neb) bot.
+
+Additional details are available in [Setting up Go-NEB](docs/configuring-playbook-bot-go-neb.md).
+
+
 # 2021-02-19
 
 ## GroupMe bridging support via mx-puppet-groupme

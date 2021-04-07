@@ -17,11 +17,10 @@ matrix_grafana_anonymous_access: false
 
 # This has no relation to your Matrix user id. It can be any username you'd like.
 # Changing the username subsequently won't work.
-matrix_grafana_default_admin_user: some_username_chosen_by_you
+matrix_grafana_default_admin_user: "some_username_chosen_by_you"
 
-# Passwords containing special characters may be troublesome.
 # Changing the password subsequently won't work.
-matrix_grafana_default_admin_password: some_strong_password_chosen_by_you
+matrix_grafana_default_admin_password: "some_strong_password_chosen_by_you"
 ```
 
 By default, a [Grafana](https://grafana.com/) web user-interface will be available at `https://stats.<your-domain>`.
@@ -59,7 +58,7 @@ Name | Description
 `matrix_nginx_proxy_proxy_synapse_metrics_basic_auth_key`|Set this to a password to use for HTTP Basic Auth for protecting `https://matrix.DOMAIN/_synapse/metrics` (the username is always `prometheus` - it's not configurable)
 
 
-## More inforation
+## More information
 
 - [Understanding Synapse Performance Issues Through Grafana Graphs](https://github.com/matrix-org/synapse/wiki/Understanding-Synapse-Performance-Issues-Through-Grafana-Graphs) at the Synapse Github Wiki
 - [The Prometheus scraping rules](https://github.com/matrix-org/synapse/tree/master/contrib/prometheus) (we use v2)
