@@ -1,6 +1,6 @@
 {
   "name": "Configure Synapse",
-  "description": "",
+  "description": "Configure Synapse settings. Synapse is the homeserver software that powers your Matrix instance.",
   "spec": [
     {
       "question_name": "Enable Public Registration",
@@ -56,10 +56,10 @@
       "required": false,
       "min": null,
       "max": null,
-      "default": "{{ matrix_synapse_use_presence | string | lower }}",
+      "default": "{{ matrix_synapse_presence_enabled | string | lower }}",
       "choices": "true\nfalse",
       "new_question": true,
-      "variable": "matrix_synapse_use_presence",
+      "variable": "matrix_synapse_presence_enabled",
       "type": "multiplechoice"
     },
     {
@@ -107,7 +107,7 @@
       "default": "",
       "choices": "",
       "new_question": true,
-      "variable": "matrix_synapse_registration_shared_secret",
+      "variable": "ext_matrix_synapse_registration_shared_secret",
       "type": "password"
     },
     {

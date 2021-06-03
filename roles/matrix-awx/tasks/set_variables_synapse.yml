@@ -21,7 +21,7 @@
     'matrix_synapse_enable_registration': '{{ matrix_synapse_enable_registration }}'
     'matrix_synapse_federation_enabled': '{{ matrix_synapse_federation_enabled }}'
     'matrix_synapse_enable_group_creation': '{{ matrix_synapse_enable_group_creation }}'
-    'matrix_synapse_use_presence': '{{ matrix_synapse_use_presence }}'
+    'matrix_synapse_presence_enabled': '{{ matrix_synapse_presence_enabled }}'
     'matrix_synapse_max_upload_size_mb': '{{ matrix_synapse_max_upload_size_mb }}'
     'matrix_synapse_url_preview_enabled': '{{ matrix_synapse_url_preview_enabled }}'
     'matrix_synapse_allow_guest_access': '{{ matrix_synapse_allow_guest_access }}'
@@ -59,8 +59,8 @@
     line: "{{ item.key }}: {{ item.value }}"
     insertafter: '# Synapse Settings Start'
   with_dict:
-    'matrix_synapse_registration_shared_secret': '{{ matrix_synapse_registration_shared_secret }}'
-  when: matrix_synapse_registration_shared_secret|length > 0
+    'matrix_synapse_registration_shared_secret': '{{ ext_matrix_synapse_registration_shared_secret }}'
+  when: ext_matrix_synapse_registration_shared_secret|length > 0
 
 - name: Record registations_require_3pid extra variable if true
   delegate_to: 127.0.0.1
